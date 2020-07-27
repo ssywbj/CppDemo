@@ -12,7 +12,7 @@ int main()
 	/*
 	 *编译命令 CC
 	 *$ CC prog1.cpp
-	 *编译器会生成一个可执行文件：Windows系统是prog1.exe，Unix系统通常是a.out
+	 *编译器会生成可执行文件：Windows系统是prog1.exe，Unix系统通常是a.out
 	 *
 	 *执行命令
 	 *Windows可忽略扩展名.exe:
@@ -33,7 +33,22 @@ int main()
 	 *Windows系统中：
 	 * $ echo %ERRORLEVEL%
 	 *
+	 *常用的C++编译器：GNU编译器和微软Visual Studio编译器 
 	 *GNU编译器
-	 *g++ -o prog1 prog.cpp
+	 *运行GNU编译器的命令是g++:
+	 * $ g++ -o prog1 prog.cpp
+	 *其中-o prog1是编译参数，指定了可执行文件的文件名。在不同的操作系统中，
+	 *此命令会生成一个名为prog1或prog1.exe的可执行文件。在Unix系统中，可
+	 *执行文件没有后缀；在Windows系统中，后缀为.exe。如果省略了-o prog1
+	 *参数，在Unix系统中编译器会生成一个名为a.out的可执行文件，在Windows系统
+	 *中则会生成一个名为a.exe的可执行文件（注意：根据使用的GNU编译器的版本,
+	 *可能需要指定-std=c++0x参数来打开对C++的支持）。
+	 *命令常用选项：
+	 *-w:关闭编译时的警告，也就是编译后不显示任何warning，因为有时在编译之后
+	 *编译器会显示一些例如数据转换之类的警告，这些警告是可以忽略的；
+	 *-Wall:编译后显示所有警告；
+	 *-W:类似-Wall，会显示警告，但是只显示编译器认为会出现错误的警告；
+	 *良好的编译习惯是把-W和-Wall都尽量带上，如
+	 * $ g++ -W -Wall -o prog1 prog.cpp
 	 */
 }
