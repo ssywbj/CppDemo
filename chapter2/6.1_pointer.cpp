@@ -68,11 +68,39 @@ int main()
 	if (p3){
 		cout << "p3 is not null pointer" << endl;
 	}
+	int *pp = 0;
+	if (pp) {//用if(pointer)判断指针是否指向了一个合法的对象
+		cout << "pp is vaild pointer" << endl;
+	} else {
+		cout << "pp is invaild pointer" << endl;
+	}
+	pp = &ival;
+	if (pp) {
+		cout << "pp is vaild pointer" << endl;
+	} else {
+		cout << "pp is invaild pointer" << endl;
+	}
 	//对于两个类型相同的合法指针，可以用“==”或“!=”来比较它们，比较的结果
 	//是布尔类型。如果两个指针存放的地址值相同，则它们相等；反之它们不
 	//相等。两个指针相等有三种可能：它们都为空、都指向同一个对象，或者都
 	//指向同一个对象的下一个地址。需要注意的是，一个指针指向某对象，另一个
 	//指针指向另外对象的下一地址，也有可能出现指针相等的情况。
 
+	//void*指针
+	//void*是一种特殊的指针类型，可用于存放任意对象的地址，但对该地址到底是
+	//个什么类型的对象并不了解
+	double obj = 3.14, *pd = &obj;
+	void *pv = &obj;
+	cout << "pv: " << pv << ", pd:" << pd << ", *pd: " << *pd << endl;
+	//cout<<"*pv: "<< *pv << endl;//错误：不能直接操作void*指针所指的对象
+	int ii = 6, *pii = &ii;
+	pv = pii;
+	cout << "pv: " << pv << ", pii:" << pii << endl;
+	//void*指针能做的事儿比较有限：拿它和别的指针比较、作为函数的输入输出、
+	//或者给另外一个void*指针赋值。不能直接操作void*指针所指的对象，因为
+	//我们并不知道这个对象是什么类型，也就无法确定能在这个对象上做哪些操作。
+	
+	int* p4 = &ival;//也可以这么定义指针，但容易产生误导，如
+	int* p5, p6;//p5是int指针，p6是int
 	return 0;
 }
