@@ -24,5 +24,11 @@ int main()
 	//直接为ci赋值，当然也不能试图通过引用去改变ci。
 	
 
+	double dval = 3.14;
+	const int &ri = dval;//其实ri绑定的是一个临时变量
+        cout << "dval: " << dval << ", ri: " << ri << endl;
+	//ri = 4;//错误：常量引用不能修改绑定对象的值
+        //cout << "ri: " << ri << endl;
+
 	return 0;
 }
