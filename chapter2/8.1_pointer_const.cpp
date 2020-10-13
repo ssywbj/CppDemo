@@ -23,15 +23,23 @@ int main()
 	//非指向的那个值。
 	int errNumb = 0;
 	int *const curErr = &errNumb;//*const声明, curErr将一直指向errNumb
-	const double pi = 3.14159;
-	const double *const pip = &pi;//pip是一个指向常量对象的常量指针
+	const double dpi = 3.14159;
+	const double *const pip = &dpi;//pip是一个指向常量对象的常量指针
 	//从右向左阅读pip的含义：const说明它是一个常量，*说明它是一个指针，
 	//double说明它是一个双精度类型，最左侧的const说明它是一个指向
 	//常量的对象。所以pip是一个指向常量对象的常量指针
 	
-	//注：指向常量的指针和常量指针不是一个概念。用名词顶层const(top-level
-	// const)表示指针本身是个常量，而用名词底层const(low-level const)表示
-	//指针所指的对象是一个常量。
+	//注：指向常量的指针和常量指针不是一个概念。
+	//用名词顶层const(top-level const)表示指针本身是个常量，
+	//用名词底层const(low-level const)表示指针所指的对象是一个常量。
+	//更一般的，顶层const可以表示任意的对象是常量，底层const则与指针和引用
+	//等复合类型的基本类型有关。
+	int i = 0;
+	int *const p1 = &i;//不能改变p1的值，这是一个顶层const
+	const int ci = 43;//不能改变ci的值，这是一个顶层const
+	const int *p2 = &ci;//能改变p2的值，这是一个底层const
+	const int *const p3 = p2;//靠右的const是顶层const，靠左的是底层const
+	const int &r = ci;//用于声明引用的const都是底层const
 	
 	return 0;
 }
