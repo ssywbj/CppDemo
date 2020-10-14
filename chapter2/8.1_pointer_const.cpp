@@ -40,7 +40,21 @@ int main()
 	const int *p2 = &ci;//能改变p2的值，这是一个底层const
 	const int *const p3 = p2;//靠右的const是顶层const，靠左的是底层const
 	const int &r = ci;//用于声明引用的const都是底层const
-	
+        //当执行拷贝操作时，常量是顶层const还是底层const区别明显，其中顶层
+	//const不受什么影响，而底层const的限制却不能忽视：拷入和拷出的对象
+	//必须具有相同的底层const资格，或者两个对象的数据类型必须能够转换，
+	//一般来说，非常量可以转换成常量，反之则不行。
+	//顶层const拷贝
+	i = ci;//正确：拷贝ci的值，ci是一个顶层const，对此操作影响
+	p2 = p3;//正确：p2和p3指向的对象类型相同，p3顶层const的部分不影响
+        //底层const拷贝
+	//int *p = p3;//错误：p3包含底层const的定义，而p没有
+	const int *pp3 = p3;//正确：pp3是底层const
+	p2 = p3;//正确：p2和p3都是底层const
+	p2 = &i;//正确：int*能转换成const int*
+	//int &r1 = ci;//错误：普通的int&不能绑定到int常量上
+	const int &r2 = i;//正确：const int&可以绑定到一个普通int上
+
 	return 0;
 }
 
