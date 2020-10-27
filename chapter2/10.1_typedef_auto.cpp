@@ -33,6 +33,18 @@ int main()
 	//auto sz = 0, pi = 3.14;//错误：sz和pi的类型不一样
 	
 	//C++11新标准引入decltype类型说明符，用它能从表达式的的类型推断出要定义的
-	//变量的类型，但是不想用该表达式的值初始化变量。
+	//变量的类型，但是不想用该表达式的值初始化变量。在此过程中，编译器分析表
+	//达式并得到它的值，却不实际计算表达式的值。
+	//decltype(f()) sum = x;//sum的类型就是函数f的返回类型
+	//编译器并不实际调用函数f，而是使用当调用发生时f的返回值类型作为sum的类型。
+	const int ci = 0, &cj = ci;
+	decltype(ci) x = 44;//x的类型是const int
+	decltype(cj) y = x;//y的类型是const int&，y绑定到x
+	//decltype(cj) z;//错误：z是一个引用，必须初始化
+	cout << "x: " << x << ", y: " << x << endl;
+	//decltype((variable))(注意是双层括号)的结果永远是引用，而decltype(variable)
+	//的结果只有当varible本身是一个引用才是引用。
+	//decltype((val1)) dd;//错误：dd是int&，必须初始化
+	decltype(val1) e;
 	return 0;
 }
