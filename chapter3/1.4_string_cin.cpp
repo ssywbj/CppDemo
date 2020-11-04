@@ -8,13 +8,14 @@ using std::string;
 
 int main()
 {
-	unsigned index = 0;
-	string word;
-	while (cin >> word) {
-		index++;
-		cout << "index: " << index << ", " << word << endl;
-	}
-	cout << "total: " << endl;
+    //读取数量未知的sring
+    unsigned index = 0;
+    string word;
+    while (cin >> word) {//空白(即空格符、换行符等)并不会读入，不进行循环体
+        index++;
+        cout << "index: " << index << ", word: " << word << endl;
+    }
+    cout << "total: " << index << endl;
 
-	return 0;
+    return 0;
 }
